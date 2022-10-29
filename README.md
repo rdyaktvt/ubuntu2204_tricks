@@ -16,19 +16,19 @@ Some short and good tricks for ubuntu LTS 22.04
 
 ### Disable Login Password
 
-* Edit edilecek dosya:
+* Edit this file:
   ```sh
   /lib/systemd/system/getty@.service
   ```
 
-* #ExecStart=-/sbin/agetty -o '-p -- \\u' --noclear %I $TERM değiştirilecek.
+* #ExecStart=-/sbin/agetty -o '-p -- \\u' --noclear %I $TERM will be chenged.
   ```sh
   ExecStart=-/sbin/agetty -a asus19 --noclear %I $TERM
   ```
 
 ### getting-started
 
-* yeni bir service yazıyoruz. (/etc/systemd/system/start_newrl.service):
+* Write new service. (/etc/systemd/system/start_newrl.service):
   ```sh
   /etc/systemd/system/start_newrl.service
 
@@ -40,7 +40,7 @@ Some short and good tricks for ubuntu LTS 22.04
 
   ```
 
-* start_newrl.service içinde bir bash script i çalıştırıyoruz.
+* start_newrl.service will start a bash script.
   ```sh
   [Unit]
   Description=My custom startup script
@@ -68,13 +68,13 @@ Some short and good tricks for ubuntu LTS 22.04
   WantedBy=multi-user.target
   ```
 
-* start_newrl.sh içeriği
+* start_newrl.sh contents
   ```sh
   #!/bin/bash 
   screen -dmS syn bash -c 'cd /home/asus19/newrl/;scripts/start.sh testnet;exec bash'
   ```
   
-* makina açıldığında bu script arka planda çalışıyor ve sonuçları ancak log üzerinden görebiliyoruz. bunun içinde stat_newrl.sh dosyası oluşturuldu
+* Only, we can see results from log file. Stat_newrl.sh will show us log file tail.
   ```sh
   #!/bin/bash
   tail -f newrl/logs/newrl-node-log
